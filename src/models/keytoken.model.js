@@ -11,6 +11,11 @@ const keyTokenSchema = new Schema({
         required: true,
         ref: 'Shop'
     },
+    privateKey: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     publicKey: {
         type: String,
         required: true,
@@ -22,7 +27,7 @@ const keyTokenSchema = new Schema({
     }
 }, {
     timestamps: true,
-    collation: COLLECTION_NAME
+    collection: COLLECTION_NAME
 })
 
 // export the model

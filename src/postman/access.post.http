@@ -20,3 +20,11 @@ x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856
   "email": "cloly1@gmail.com",
   "password": "1"
 }
+
+
+### logout
+POST {{url_dev}}/shop/logout
+Content-Type: application/json
+x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
+x-client-id: 682b243b70004ae0e7869258
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDc2NzYzOTIsImV4cCI6MTc0Nzg0OTE5Mn0.cvFQgMDa6shQa953RlDx0Pqij-lKL8En7vtqSXY6ZPk

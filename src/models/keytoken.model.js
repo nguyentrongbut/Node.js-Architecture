@@ -21,9 +21,13 @@ const keyTokenSchema = new Schema({
         required: true,
         unique: true,
     },
-    refreshToken: {
+    refreshTokensUsed: {
         type: Array,
-        default: []
+        default: [] // những RT đã được sử dụng
+    },
+    refreshToken: {
+        type: String,
+        required: true,
     }
 }, {
     timestamps: true,

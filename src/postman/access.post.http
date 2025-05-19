@@ -3,7 +3,7 @@
 ### signup
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
-x-api-key: 7d73395fd9454665b9e5a62cdfb7f5d2507d71427696d37a6985ff0ada1d7c5861ac22f213db03762921f69a557ea6a93660b93b7c643654b12f132109e9ea71
+x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
 
 {
   "name": "Shop Cloly",

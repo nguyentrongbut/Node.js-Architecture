@@ -1,6 +1,6 @@
 'use strict'
 
-const Status = {
+const StatusCode = {
     FORBIDDEN: 403,
     CONFLICT: 409,
 }
@@ -19,13 +19,13 @@ class ErrorResponse extends Error {
 }
 
 class ConflictRequestError extends ErrorResponse {
-    constructor(message = ReasonStatusCode.CONFLICT, statusCode = Status.CONFLICT) {
+    constructor(message = ReasonStatusCode.CONFLICT, statusCode = StatusCode.CONFLICT) {
         super(message, statusCode);
     }
 }
 
 class BadRequestError extends ErrorResponse {
-    constructor(message = ReasonStatusCode.FORBIDDEN, statusCode = Status.FORBIDDEN) {
+    constructor(message = ReasonStatusCode.FORBIDDEN, statusCode = StatusCode.FORBIDDEN) {
         super(message, statusCode);
     }
 }

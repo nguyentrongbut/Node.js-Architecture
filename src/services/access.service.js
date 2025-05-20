@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt')
 const crypto = require('node:crypto')
 
 const KeyTokenService = require('./keyToken.service')
-const {createTokenPair} = require("../auth/authUtils");
+const {createTokenPair, verifyJWT} = require("../auth/authUtils");
 const {getInfoData} = require("../utils");
-const {BadRequestError, AuthFailError} = require("../core/error.response");
+const {BadRequestError, AuthFailError, ForbiddenError} = require("../core/error.response");
 
 // service ///
 const {findByEmail} = require("../services/shop.service");
@@ -23,6 +23,59 @@ const RoleShop = {
 
 class AccessService {
 
+    /*
+    * check this token used?
+    * */
+    static handleRefreshToken = async ( refreshToken ) => {
+
+        // check xem token đã được sử dụng chưa?
+        const foundToken = await KeyTokenService.findByRefreshTokenUsed(refreshToken)
+        // nếu có
+        console.log("foundToken", foundToken)
+        if (foundToken) {
+            // decode xem là ai?
+            const {userId, email} = await verifyJWT(refreshToken, foundToken.privateKey)
+            console.log({userId, email})
+            // xoá tất cả token trong keyStore
+            await KeyTokenService.deleteKeyById(userId)
+            throw new ForbiddenError('Error: Something went wrong! Please log in again')
+        }
+
+        // Chưa có
+        const holderToken = await KeyTokenService.findByRefreshToken(refreshToken)
+        if (!holderToken) throw new AuthFailError('Error: Shop not registered!')
+
+        // Tìm được verify token
+        const {userId, email} = await verifyJWT(refreshToken, holderToken.privateKey)
+        console.log("[2]--", {userId, email})
+        // check userId
+        const foundShop = await findByEmail({email})
+        if (!foundShop) throw new AuthFailError('Error: Shop not registered!')
+
+        // create 1 cặp mới
+        const tokens = await createTokenPair({
+                userId,
+                email
+            },
+            holderToken.publicKey,
+            holderToken.privateKey
+        )
+
+        // update token
+        await KeyTokenService.updateKeyTokenById(holderToken._id,{
+            $set: {
+                refreshToken: tokens.refreshToken,
+            },
+            $addToSet: {
+                refreshTokensUsed: refreshToken // đã được sử dụng để lấy token mới rồi
+            }
+        })
+
+        return {
+            user: {userId, email},
+            tokens
+        }
+    }
 
     static logout = async (keyStore) => {
         const delKey = await KeyTokenService.removeKeyById(keyStore._id)
@@ -44,7 +97,7 @@ class AccessService {
         if (!foundShop) throw new BadRequestError('Error: Shop not registered!')
 
         // 2.match password
-        const match = bcrypt.compare(password, foundShop.password)
+        const match = await bcrypt.compare(password, foundShop.password)
         if (!match) throw new AuthFailError('Error: Authentication error!')
 
         // 3.
@@ -71,7 +124,7 @@ class AccessService {
 
         return {
             shop: getInfoData({
-                fileds: ['_id', 'name', 'email'], object: foundShop
+                fields: ['_id', 'name', 'email'], object: foundShop
             }),
             tokens
         }

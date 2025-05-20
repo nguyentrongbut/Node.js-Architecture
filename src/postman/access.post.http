@@ -1,9 +1,13 @@
 @url_dev=http://localhost:3052/v1/api
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDc3MjM0MjIsImV4cCI6MTc0Nzg5NjIyMn0.wT73KWXmbrIOZNc-Q3N0A2H7fyF0QwCjEoxNKmlBcJc
+@x-api-key=68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
+@x-client-id=682b243b70004ae0e7869258
+@refreshToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDc3MjM0MjIsImV4cCI6MTc0ODMyODIyMn0.LxpLZBJyupyVP-MfHC9nUrKzPTxEX4W0f1u4qerlJbg"
 
 ### signup
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
-x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
+x-api-key: {{x-api-key}}
 
 {
   "name": "Shop Cloly",
@@ -14,7 +18,7 @@ x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856
 ### login
 POST {{url_dev}}/shop/login
 Content-Type: application/json
-x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
+x-api-key: {{x-api-key}}
 
 {
   "email": "cloly1@gmail.com",
@@ -25,6 +29,17 @@ x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856
 ### logout
 POST {{url_dev}}/shop/logout
 Content-Type: application/json
-x-api-key: 68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
-x-client-id: 682b243b70004ae0e7869258
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDc2NzYzOTIsImV4cCI6MTc0Nzg0OTE5Mn0.cvFQgMDa6shQa953RlDx0Pqij-lKL8En7vtqSXY6ZPk
+x-api-key: {{x-api-key}}
+x-client-id: {{x-client-id}}
+authorization: {{accessToken}}
+
+### refreshToken
+POST {{url_dev}}/shop/handlerRefreshToken
+Content-Type: application/json
+x-api-key: {{x-api-key}}
+x-client-id: {{x-client-id}}
+authorization: {{accessToken}}
+
+{
+  "refreshToken": {{refreshToken}}
+}

@@ -10,6 +10,7 @@ const productSchema = new Schema({
         type: String,
         required: true,
     },
+    product_description: String,
     product_thumbnail: {
         type: String,
         required: true,

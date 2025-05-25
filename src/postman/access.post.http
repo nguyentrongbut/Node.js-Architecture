@@ -1,8 +1,8 @@
 @url_dev=http://localhost:3052/v1/api
-@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDc3MjM0MjIsImV4cCI6MTc0Nzg5NjIyMn0.wT73KWXmbrIOZNc-Q3N0A2H7fyF0QwCjEoxNKmlBcJc
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNDg2MTAsImV4cCI6MTc0ODMyMTQxMH0.HwFD02PHph3G12808IQnRYitpeSvGblS11-OTkShmo4
 @x-api-key=68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
 @x-client-id=682b243b70004ae0e7869258
-@refreshToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDc3MjM0MjIsImV4cCI6MTc0ODMyODIyMn0.LxpLZBJyupyVP-MfHC9nUrKzPTxEX4W0f1u4qerlJbg"
+@refreshToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNDg2MTAsImV4cCI6MTc0ODc1MzQxMH0.Cm9YDZHNFlY7FxMykTY8MDy4GCChI7teql7K2RPjkis"
 
 ### signup
 POST {{url_dev}}/shop/signup
@@ -42,4 +42,26 @@ authorization: {{accessToken}}
 
 {
   "refreshToken": {{refreshToken}}
+}
+
+### createProuduct
+POST {{url_dev}}/product
+Content-Type: application/json
+x-api-key: {{x-api-key}}
+x-client-id: {{x-client-id}}
+authorization: {{accessToken}}
+
+{
+  "product_name":  "New Jean",
+  "product_description":  "jean desc",
+  "product_thumbnail":  "link",
+  "product_price": 50,
+  "product_quantity":  1,
+  "product_type":  "Clothing",
+  "product_shop":  "ddd",
+  "product_attributes": {
+    "brand": "lv",
+    "size": "l",
+    "material": "Demin"
+  }
 }

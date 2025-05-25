@@ -3,6 +3,7 @@
 @x-api-key=68a59f7594b44ecf6c5bc5abac09c81c105b30fd81f0d68c2a6969aa8e34af3b23856ea58fe02b69eb3f8bb09f1bdb8b0700e3cb083618827566829fe8b849ea
 @x-client-id=682b243b70004ae0e7869258
 @refreshToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNDg2MTAsImV4cCI6MTc0ODc1MzQxMH0.Cm9YDZHNFlY7FxMykTY8MDy4GCChI7teql7K2RPjkis"
+@x-rtoken-id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODJiMjQzYjcwMDA0YWUwZTc4NjkyNTgiLCJlbWFpbCI6ImNsb2x5MUBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNTY1OTAsImV4cCI6MTc0ODc2MTM5MH0.cuA5LGaNQ_AXv_NJDlprVyGg5194JuIVH2MvNYGlHVI
 
 ### signup
 POST {{url_dev}}/shop/signup
@@ -38,11 +39,8 @@ POST {{url_dev}}/shop/handlerRefreshToken
 Content-Type: application/json
 x-api-key: {{x-api-key}}
 x-client-id: {{x-client-id}}
-authorization: {{accessToken}}
+x-rtoken-id: {{x-rtoken-id}}
 
-{
-  "refreshToken": {{refreshToken}}
-}
 
 ### createProuduct
 POST {{url_dev}}/product
